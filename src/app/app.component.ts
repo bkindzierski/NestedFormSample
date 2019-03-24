@@ -9,12 +9,15 @@ import { FormBuilder, FormArray, FormGroup, Validators, FormControl } from "@ang
 export class AppComponent implements OnInit{
   title = 'NestedFormSample';
   form: FormGroup;
+  form2: FormGroup;
 
+  cbOneVal:false;
   constructor(private fb: FormBuilder) {
 
   }
 // git checker BDK
   ngOnInit(){
+   
     this.form = this.fb.group({
       'Xs': this.fb.array([
         this.initX()
@@ -22,6 +25,14 @@ export class AppComponent implements OnInit{
     });
     this.form.valueChanges.subscribe(data => this.validateForm());
     this.validateForm();    
+    //
+    this.form2 = this.fb.group({
+      'cbOne': ['cbOne'],
+    });
+  }
+
+  addInterestClick(event){
+    console.log('event', event)
   }
 
   initX() {

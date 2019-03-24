@@ -1,9 +1,9 @@
 
-<div style="width: 500px;">
+<div class="wrapper">
+  <div class="div1">
     <form [formGroup]="form">
         <!-- X -->
-        <div formArrayName="Xs">
-          
+        <div formArrayName="Xs">          
           <div *ngFor="let X of form['controls'].Xs['controls']; let ix=index">
             <div formGroupName="{{ix}}" class="Xs">
               <input type="text" formControlName="X">
@@ -33,16 +33,40 @@
                 </div>
                 <input type="button" (click)="addY(ix)" value="Add Y">
               </div>
+
               <!-- Y End-->
             </div>
           </div>
           <input type="button" (click)="addX()" value="Add X">
         </div>
         <!-- X End -->
-      <form>
+       
+      </form>
+    <h5>Field Values</h5>
+    <pre style="font-size:15px">{{ form.value | json }}</pre>
+  </div>
 
+  <div class="div2">
+    <form [formGroup]="form2">
+        <input type="checkbox" 
+                id="cbOne" 
+                (ngModelChange)="addInterestClick($event)" 
+                formControlName="cbOne"
+                [checked]="false" >
+        <label title="cbOne">Check box one </label>
+     
+        <!-- <input #cb type="checkbox" [attr.id]="inputId" [name]="name" 
+        [value]="value" 
+        [checked]="checked" 
+        (focus)="onFocus($event)" 
+        (blur)="onBlur($event)" 
+        [ngClass]="{'ui-state-focus':focused}" 
+        (change)="handleChange($event)" 
+        [disabled]="disabled" 
+        [attr.tabindex]="tabindex"> -->
+    </form>
+      <h5>Field Values 2</h5>
+      <pre style="font-size:15px">{{ form.value | json }}</pre>
+  </div>
 
-
-  <h5>Field Values</h5>
-  <pre style="font-size:15px">{{ form.value | json }}</pre>
-  
+</div><!--- end wrapper -->
